@@ -41,7 +41,6 @@ Following the project roadmap, work right now is focused on:
 8. Real-time embedded integration (planned)
 9. Safe simulated deployment testing, e.g. LEDs/buzzer/OLED messages instead of a real actuator (planned)
 10. Hardware refinement and documentation (planned)
-
 ## Firmware prototype
 
 The first firmware prototype is in `src/` and is built with PlatformIO:
