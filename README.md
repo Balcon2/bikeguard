@@ -68,6 +68,13 @@ is detected. Pin assignments and the measured wheel circumference must be
 updated in `src/config.h` for the actual wiring. A missing IMU is reported over
 serial and does not produce fabricated samples.
 
+## Offline ML tools
+
+The `ml/` folder contains the first offline preprocessing, training, and
+evaluation scaffold. It requires real labeled recordings and intentionally
+does not include fabricated data or a pre-trained model. See
+[`ml/README.md`](ml/README.md) for the CSV schema and commands.
+
 ## Software
 
 - **Firmware**: C++ (Arduino) and/or MicroPython on the ESP32-S3, kept modular (separate sensor drivers, logging, display, configuration).
