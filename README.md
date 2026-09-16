@@ -41,6 +41,39 @@ Following the project roadmap, work right now is focused on:
 8. Real-time embedded integration (planned)
 9. Safe simulated deployment testing, e.g. LEDs/buzzer/OLED messages instead of a real actuator (planned)
 10. Hardware refinement and documentation (planned)
+## Firmware prototype
+
+The first firmware prototype is in `src/` and is built with PlatformIO:
+
+```text
+src/
+  config.h           # pins, I2C addresses, and sampling intervals
+  imu.*              # MPU6050 bring-up and raw sample conversion
+  wheel_speed.*      # interrupt-driven Hall pulse counting and speed
+  status_display.*   # SSD1306 debug/status output
+  csv_logger.*       # synchronized CSV output over USB serial
+  main.cpp           # non-blocking application loop
+```
+
+Build and upload with:
+
+```bash
+pio run
+pio run --target upload
+pio device monitor
+```
+
+The firmware emits the planned sensor columns as CSV at 50 Hz when the MPU6050
+is detected. Pin assignments and the measured wheel circumference must be
+updated in `src/config.h` for the actual wiring. A missing IMU is reported over
+serial and does not produce fabricated samples.
+
+## Offline ML tools
+
+The `ml/` folder contains the first offline preprocessing, training, and
+evaluation scaffold. It requires real labeled recordings and intentionally
+does not include fabricated data or a pre-trained model. See
+[`ml/README.md`](ml/README.md) for the CSV schema and commands.
 
 ## Software
 
